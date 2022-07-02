@@ -5,10 +5,13 @@ class Cell:
     food_production: float
     comfort: float
 
-    def __init__(self, uid):
+    def __init__(self, uid,
+                 x: int,
+                 y: int,
+                 food_production: float,
+                 comfort: float):
         self.uid = uid
-        self.x = 0
-        self.y = 0
-        self.food_production = 0
-        self.comfort = 0
-
+        self.x = x
+        self.y = y
+        self.food_production = food_production
+        self.comfort = comfort

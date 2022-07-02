@@ -1,58 +1,9 @@
-from enum import Enum
-from cell import Cell
+from unit import BMode
+from unit import Behaviour
+from unit import Unit
 
 
-class BMode(Enum):
-    IDLE = 0
-    REST = 1
-    WORK = 2
-
-
-class Behaviour:
-    def __init__(self):
-        pass
-
-    def tick(self, u):
-        pass
-
-
-class Unit:
-    uid: str
-
-    food: float
-    rest: float
-    mood: float
-
-    food_prod_mult: float
-    good_to_bad_perception_ratio: float
-
-    cell: Cell
-    behaviour: Behaviour
-    b_mode: BMode
-
-    def __init__(self, uid, food_prod_mult, good_to_bad_perception_ratio, behaviour, cell):
-        self.uid = uid
-
-        self.food = .5
-        self.rest = 1
-        self.mood = .5
-
-        self.cell = cell
-
-        self.food_prod_mult = food_prod_mult
-        self.good_to_bad_perception_ratio = good_to_bad_perception_ratio
-
-        self.behaviour = behaviour
-        self.b_mode = None
-
-    def is_alive(self) -> bool:
-        return self.food > 0
-
-    def tick(self):
-        self.behaviour.tick(self)
-
-
-class Behaviour:
+class BehaviourSimple(Behaviour):
     food_decay_rate: float
     food_acceptable: float
     rest_acceptable: float
@@ -69,6 +20,7 @@ class Behaviour:
                  rest_comfortable: float,
                  mood_change_rate_food_base: float,
                  mood_change_rate_rest_base: float):
+        super().__init__(self)
         self.food_decay_rate = food_decay_rate
         self.food_acceptable = food_acceptable
         self.rest_acceptable = rest_acceptable
